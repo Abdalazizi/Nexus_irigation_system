@@ -1,38 +1,42 @@
-
 class Authentication:
-    users = [
-        {
-            "name":"twariq",
-            "pwd":"123"
-        }
-    ]
+    users = []
+
     def __init__(self):
         self.username = None
         self.password = None
         self.logedin = False
-    
-    def login(self, uname,pwd):
+
+    def login(self, uname, pwd):
         for user in self.users:
-            if user['name'] == uname:
+            if user['name'] == uname and user['pwd'] == str(pwd):
                 print(f"Welcome {uname}")
                 self.logedin = True
-            else:
-                print("Wrong username or password")
-    def register(self, uname,pwd):
+                return 
+        print("Wrong username or password")
+
+    def register(self, uname, pwd):
+        # Check if user already exists
         for user in self.users:
             if user['name'] == uname:
-                print(f"user already exist")
-                self.logedin = True
-            else:
-                self.users.append(
-                {
-                    "name":uname,
-                    "pwd":pwd
-                }
-                )
-                print("User created")
-    
-            # print(user['name'])
-test = Authentication()
-test.register("twariq123",43)
-print(test.users)
+                print("User already exists")
+                return
+        # Add new user
+        self.users.append({
+            "name": uname,
+            "pwd": str(pwd)
+        })
+        print("User created successfully!")
+class IrigationControl:
+    # all irigation logic must be here 
+    pass
+class WeatherInformation:
+    # all weather info goes herre
+    pass
+class CropsControl:
+    # crops control goes here
+    pass
+class Dashboard(Authentication):
+    def __init__(self):
+        super().__init__()
+        
+# Testing
