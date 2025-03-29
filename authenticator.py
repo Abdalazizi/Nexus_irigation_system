@@ -1,3 +1,4 @@
+import time
 class Authentication:
     users = []
 
@@ -28,12 +29,73 @@ class Authentication:
         print("User created successfully!")
 class IrigationControl:
     # all irigation logic must be here 
-    pass
+    def __init__(self):
+        self.irrigation_status = False  # Initially irrigation is off
+        self.irrigation_duration = 0  # Duration of irrigation in minutes
+
+    def turn_on_irrigation(self):
+        self.irrigation_status = True
+        print("Irrigation turned ON.")
+
+    def turn_off_irrigation(self):
+        self.irrigation_status = False
+        print("Irrigation turned OFF.")
+
+    def set_irrigation_duration(self):
+        # Ask the user to input irrigation duration in minutes
+        try:
+            duration = int(input("Enter the irrigation duration (in minutes): "))
+            if duration <= 0:
+                print("Invalid input. Duration should be greater than 0 minutes.")
+            else:
+                self.irrigation_duration = duration
+                print(f"Irrigation duration set to {self.irrigation_duration} minutes.")
+        except ValueError:
+            print("Invalid input. Please enter an integer value for duration.")
+
+    def start_irrigation(self):
+        # Ask the user whether to turn on the irrigation
+        user_choice = input("Do you want to turn ON the irrigation? (yes/no): ").strip().lower()
+
+        if user_choice == 'yes':
+            self.turn_on_irrigation()
+            # Ask for irrigation duration after turning on
+            self.set_irrigation_duration()
+
+            # Ask the user if they want to automatically turn off irrigation after the specified duration
+            auto_off = input(f"Do you want to automatically turn off irrigation after {self.irrigation_duration} minutes? (yes/no): ").strip().lower()
+
+            if auto_off == 'yes':
+                print(f"Watering for {self.irrigation_duration} minutes...")
+                time.sleep(self.irrigation_duration * 60)  # Simulate watering duration
+                self.turn_off_irrigation()  # Automatically turn off after the duration
+                print("Irrigation has finished.")
+            else:
+                print("Irrigation is ON. You need to manually turn it off when you are done.")
+
+        elif user_choice == 'no':
+            print("Irrigation remains OFF.")
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
+
+    def stop_irrigation(self):
+        # Stop irrigation manually
+        if self.irrigation_status:
+            self.turn_off_irrigation()
+        else:
+            print("Irrigation is already OFF.")
+
+    def monitor_irrigation_status(self):
+        # Display the current irrigation status
+        status = "ON" if self.irrigation_status else "OFF"
+        print(f"Irrigation status: {status}")
+
+        
 import random
 
 class WeatherInformation:
-     """Handles weather data generation and display."""
- def __init__(self):
+    """Handles weather data generation and display."""
+    def __init__(self):
         self.conditions = ["Sunny", "Cloudy", "Rainy", "Stormy", "Windy"]
         self.temperature = 0
         self.humidity = 0
@@ -77,5 +139,13 @@ class Dashboard(Authentication):
         
 # Testing
 if __name__ == "__main__":
-    weather_info = WeatherInformation()
-    weather_info.display_weather()
+    # Example usage:
+    irrigation_system = IrigationControl()
+
+# Simulate user input for starting irrigation, setting duration, and automatic turn off
+    irrigation_system.start_irrigation()
+
+# Monitor status of irrigation
+    irrigation_system.monitor_irrigation_status()
+    # weather_info = WeatherInformation()
+    # weather_info.display_weather()
