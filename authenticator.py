@@ -29,6 +29,8 @@ class Authentication:
 class IrigationControl:
     # all irigation logic must be here 
     pass
+import random
+
 class WeatherInformation:
      """Handles weather data generation and display."""
  def __init__(self):
