@@ -30,7 +30,41 @@ class IrigationControl:
     # all irigation logic must be here 
     pass
 class WeatherInformation:
-    # all weather info goes herre
+     """Handles weather data generation and display."""
+ def __init__(self):
+        self.conditions = ["Sunny", "Cloudy", "Rainy", "Stormy", "Windy"]
+        self.temperature = 0
+        self.humidity = 0
+
+    def generate_weather_report(self):
+        """Generate random weather data."""
+        self.temperature = random.randint(15, 35)  # Simulating temperature in Celsius
+        self.humidity = random.randint(40, 90)  # Simulating humidity percentage
+        condition = random.choice(self.conditions)
+
+        return {
+            "Condition": condition,
+            "Temperature": f"{self.temperature}°C",
+            "Humidity": f"{self.humidity}%"
+        }
+
+    def display_weather(self):
+        """Continuously prompt the user to display weather information."""
+        print("Welcome to the Farmer's Weather Information System")
+        
+        while True:
+            choice = input("\nDo you want to check the weather? (yes/no): ").strip().lower()
+            if choice == "yes":
+                weather_report = self.generate_weather_report()
+                print("\n--- Weather Information ---")
+                for key, value in weather_report.items():
+                    print(f"{key}: {value}")
+                print("----------------------------")
+            elif choice == "no":
+                print("Exiting the system. Have a great day!")
+                break
+            else:
+                print("Invalid input. Please type 'yes' or 'no'.")
     pass
 class CropsControl:
     # crops control goes here
@@ -40,3 +74,6 @@ class Dashboard(Authentication):
         super().__init__()
         
 # Testing
+if __name__ == "__main__":
+    weather_info = WeatherInformation()
+    weather_info.display_weather()
