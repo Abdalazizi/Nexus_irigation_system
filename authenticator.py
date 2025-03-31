@@ -142,7 +142,7 @@ class CropsControl:
         self.crops[uname].append(crop)
         print(f"Crop '{crop.name}' registered successfully.")
 
-def register_crops_from_input(self, uname):
+    def register_crops_from_input(self, uname):
         """Handles user input to register multiple crops."""
         while True:
             name = input("Enter the crop name (or 'exit' to finish): ")
