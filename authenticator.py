@@ -132,33 +132,6 @@ class WeatherInformation:
     pass
 
     # crops control goes here
-class Crop:
-    def __init__(self, name, crop_type, area):
-        self.name = name
-        self.crop_type = crop_type
-        self.area = area
-
-
-class CropManager:
-    def __init__(self):
-        self.crops = {}
-
-    def get_crops(self, uname):
-        """Retrieves all crops registered by a user."""
-        return self.crops.get(uname, [])
-
-    def view_registered_crops(self, uname):
-        """Displays all crops registered by a user."""
-        crops = self.get_crops(uname)
-        if not crops:
-            print("No crops registered yet.")
-        else:
-            print("Registered Crops:")
-            for crop in crops:
-                print(f"Name: {crop.name}, Type: {crop.crop_type}, Area: {crop.area} sq.m")
-
-    # Additional methods can be added here as needed
-
     pass
 class Dashboard(Authentication):
     def __init__(self):
