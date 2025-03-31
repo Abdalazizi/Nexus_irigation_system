@@ -129,10 +129,16 @@ class WeatherInformation:
                 break
             else:
                 print("Invalid input. Please type 'yes' or 'no'.")
-    pass
+    
+class Crop:
+    def __init__(self,name,crop_type,area):
+        self.name= name
+        self.crop_type= crop_type
+        self.area= area
+
 class CropsControl:
     # crops control goes here
-    def _init_(self):
+    def __init__(self):
         self.crops = {}
 
     def register_crop(self, uname, crop):
@@ -150,8 +156,19 @@ class CropsControl:
                 break
             crop_type = input("Enter the crop type: ")
             area = float(input("Enter the crop area (in square meters): "))
-           # new_crop = Crop(name, crop_type, area)
-            #self.register_crop(uname, new_crop)
+            new_crop = Crop(name, crop_type, area)
+            self.register_crop(uname,new_crop)
+    def get_crops(self, uname):
+           return self.crops.get(uname, [])
+    def view_registered_crops(self, uname):
+        """Displays all crops registered by a user."""
+        crops = self.get_crops(uname)
+        if not crops:
+            print("No crops registered yet.")
+        else:
+            print("Registered Crops:")
+            for crop in crops:
+                print(f"Name: {crop.name}, Type: {crop.crop_type}, Area: {crop.area} sq.m")
 
     
 class Dashboard(Authentication):
@@ -161,12 +178,19 @@ class Dashboard(Authentication):
 # Testing
 if __name__ == "__main__":
     # Example usage:
-    irrigation_system = IrigationControl()
+    #irrigation_system = IrigationControl()
 
 # Simulate user input for starting irrigation, setting duration, and automatic turn off
-    irrigation_system.start_irrigation()
+    #irrigation_system.start_irrigation()
 
 # Monitor status of irrigation
-    irrigation_system.monitor_irrigation_status()
+    #irrigation_system.monitor_irrigation_status()
     # weather_info = WeatherInformation()
     # weather_info.display_weather()
+# crop monitor
+     crop_monitor= CropsControl()
+     crop_monitor.register_crops_from_input("Cassie")
+     crop_monitor.view_registered_crops("Cassie")
+
+     
+
