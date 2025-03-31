@@ -1,6 +1,7 @@
 import time
 import random
 
+print("\n--- Welcome To The Nexus App ---")
 class Authentication:
     users = []
 
@@ -12,7 +13,7 @@ class Authentication:
     def login(self, uname, pwd):
         for user in self.users:
             if user['name'] == uname and user['pwd'] == str(pwd):
-                print(f"Welcome {uname}")
+                print(f"\nWelcome {uname}")
                 self.logedin = True
                 return 
         print("Wrong username or password")
