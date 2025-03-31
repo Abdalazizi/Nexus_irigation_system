@@ -132,7 +132,28 @@ class WeatherInformation:
     pass
 class CropsControl:
     # crops control goes here
-    pass
+    def _init_(self):
+        self.crops = {}
+
+    def register_crop(self, uname, crop):
+        """Registers a new crop for the user."""
+        if uname not in self.crops:
+            self.crops[uname] = []
+        self.crops[uname].append(crop)
+        print(f"Crop '{crop.name}' registered successfully.")
+
+def register_crops_from_input(self, uname):
+        """Handles user input to register multiple crops."""
+        while True:
+            name = input("Enter the crop name (or 'exit' to finish): ")
+            if name.lower() == 'exit':
+                break
+            crop_type = input("Enter the crop type: ")
+            area = float(input("Enter the crop area (in square meters): "))
+           # new_crop = Crop(name, crop_type, area)
+            #self.register_crop(uname, new_crop)
+
+    
 class Dashboard(Authentication):
     def __init__(self):
         super().__init__()
