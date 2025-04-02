@@ -1,6 +1,5 @@
 import time
 import random
-
 class Authentication:
     users = []
 
@@ -149,21 +148,55 @@ class CropsControl:
 class Dashboard(Authentication):
     def __init__(self):
         super().__init__()
-        
-# Testing
+        self.irrigation_system = IrrigationControl()
+        self.weather_info = WeatherInformation()
+        self.crop_monitor = CropsControl()
+
+    def main_menu(self):
+        print("\n===== Smart Farming Dashboard =====")
+        while True:
+            print("\n1. Register User")
+            print("2. Login")
+            print("3. Register Crops")
+            print("4. View Registered Crops")
+            print("5. Start Irrigation")
+            print("6. Monitor Irrigation Status")
+            print("7. Check Weather Information")
+            print("8. Exit")
+
+            choice = input("Enter your choice: ").strip()
+
+            if choice == "1":
+                uname = input("Enter username: ")
+                pwd = input("Enter password: ")
+                self.register(uname, pwd)
+            elif choice == "2":
+                uname = input("Enter username: ")
+                pwd = input("Enter password: ")
+                self.login(uname, pwd)
+            elif choice == "3":
+                if self.logedin:
+                    self.crop_monitor.register_crops_from_input(self.username)
+                else:
+                    print("You need to log in first!")
+            elif choice == "4":
+                if self.logedin:
+                    self.crop_monitor.view_registered_crops(self.username)
+                else:
+                    print("You need to log in first!")
+            elif choice == "5":
+                self.irrigation_system.start_irrigation()
+            elif choice == "6":
+                self.irrigation_system.monitor_irrigation_status()
+            elif choice == "7":
+                self.weather_info.display_weather()
+            elif choice == "8":
+                print("Exiting Smart Farming Dashboard. Goodbye!")
+                break
+            else:
+                print("Invalid choice! Please enter a number between 1 and 8.")
+
+# Running the dashboard
 if __name__ == "__main__":
-    # Example usage:
-    #irrigation_system = IrigationControl()
-
-# Simulate user input for starting irrigation, setting duration, and automatic turn off
-    #irrigation_system.start_irrigation()
-
-# Monitor status of irrigation
-    #irrigation_system.monitor_irrigation_status()
-    # weather_info = WeatherInformation()
-    # weather_info.display_weather()
-# crop monitor
-     crop_monitor= CropsControl()
-     crop_monitor.register_crops_from_input("Cassie")
-     crop_monitor.view_registered_crops("Cassie")
-
+    dashboard = Dashboard()
+    dashboard.main_menu()
