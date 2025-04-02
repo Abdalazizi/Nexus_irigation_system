@@ -116,7 +116,7 @@ class CropsControl:
         self.crops = {}
 
     def register_crop(self, uname, crop):
-        """Registration of a new crop."""
+        """Register a new crop."""
         if uname not in self.crops:
             self.crops[uname] = []
         self.crops[uname].append(crop)
