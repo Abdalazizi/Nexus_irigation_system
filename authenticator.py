@@ -116,7 +116,7 @@ class CropsControl:
         self.crops = {}
 
     def register_crop(self, uname, crop):
-        """Registers a new crop for the user."""
+        """Registration of a new crop."""
         if uname not in self.crops:
             self.crops[uname] = []
         self.crops[uname].append(crop)
@@ -138,9 +138,9 @@ class CropsControl:
         """Displays all crops registered by a user."""
         crops = self.get_crops(uname)
         if not crops:
-            print("No crops registered yet.")
+            print("No crops are registered.")
         else:
-            print("Registered Crops:")
+            print("List of Registered Crops:")
             for crop in crops:
                 print(f"Name: {crop.name}, Type: {crop.crop_type}, Area: {crop.area} sq.m")
 
