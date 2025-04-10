@@ -59,7 +59,7 @@ class Authentication(Database):
     def register(self, uname, pwd):
         query = "SELECT * FROM users WHERE name=%s"
         if self.execute(query, (uname,), fetch=True):
-            print("User already exists")
+            print("User already exists in db")
         else:
             self.execute("INSERT INTO users (name, pwd) VALUES (%s, %s)", (uname, pwd))
             print("User created successfully!")
