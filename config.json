@@ -1,8 +1,8 @@
 {
-    "host":"c925344929a7.e8a77726.alu-cod.online",
-    "user":"Twariq",
-    "password":"1234",
-    "database":"school",
-    "port":36483,
-    "use_pure":true
+    "host":"",
+    "user":"",
+    "password":"",
+    "database":"",
+    "port":,
+    "use_pure":
 }
